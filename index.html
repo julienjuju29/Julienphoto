@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photographe - Portfolio</title>
+
+  <!-- Police simple & moderne -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050509;
+      --bg-soft: #11111a;
+      --accent: #ffffff;
+      --muted: rgba(255,255,255,0.65);
+      --border: rgba(255,255,255,0.08);
+      --radius: 22px;
+      --transition: all 0.25s ease;
+      --shadow: 0 18px 40px rgba(0,0,0,0.6);
+      --font: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--accent);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    /* HEADER */
+
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 20;
+      background: rgba(5,5,9,0.95);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .logo {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      padding-bottom: 3px;
+      border-bottom: 1px solid transparent;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    @media (max-width: 600px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 70vh;
+      padding: 110px 18px 36px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .hero-inner {
+      max-width: 1000px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0,1.4fr) minmax(220px,1fr);
+      gap: 26px;
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 420px;
+      margin-bottom: 16px;
+    }
+
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      box-shadow: var(--shadow);
+      border-color: transparent;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 50px rgba(0,0,0,0.8);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-note {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .hero-photo {
+      position: relative;
+      border-radius: var(--radius);
+      padding: 10px;
+      background: var(--bg-soft);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-photo img {
+      border-radius: 18px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.1);
+      transition: var(--transition);
+    }
+
+    .hero-photo:hover img {
+      transform: scale(1.03);
+    }
+
+    .hero-label {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      padding: 4px 10px;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      background: rgba(0,0,0,0.6);
+      border-radius: 999px;
+      color: var(--accent);
+    }
+
+    /* SECTIONS */
+
+    section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px 18px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .section-heading {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .section-text {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    /* GALERIE SIMPLE */
+
+    .gallery-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 8px;
+    }
+
+    .gallery-item {
+      border-radius: 14px;
+      overflow: hidden;
+      background: #222;
+      border: 1px solid rgba(255,255,255,0.04);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+      filter: brightness(1.06);
+    }
+
+    /* LIGHTBOX TRÈS SIMPLE */
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 40;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      font-size: 26px;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 18px;
+      text-align: center;
+      font-size: 10px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+    <div class="nav">
+      <div class="logo">Julien
+      <nav class="nav-links">
+        <a href="#presentation">Présentation</a>
+        <a href="#galerie">Galerie</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1 class="hero-title">Photographe indépendant, images sobres et efficaces.</h1>
+        <p class="hero-sub">
+J’aime capturer des instants simples et vrais, pour créer de belles images et garder des souvenirs.
+Mon but est que chaque séance soit un bon moment, et que chaque modèle reparte avec des photos qui lui ressemblent.
+        </p>
+        <div class="hero-btns">
+          <a href="#galerie" class="btn btn-primary">Voir la galerie</a>
+          <a href="#presentation" class="btn btn-outline">En savoir plus</a>
+        </div>
+        <div class="hero-note">
+        </div>
+      </div>
+
+      <div class="hero-photo">
+        <!-- Mets ici l'image de l'homme avec l'appareil -->
+        <img src="images/hero-bg.jpg" alt=>
+        <div class="hero-label">
+      </div>
+    </div>
+  </section>
+
+  <!-- PRÉSENTATION -->
+  <section id="presentation">
+    <div class="section-title">Présentation</div>
+    <h2 class="section-heading">Qui je suis</h2>
+    <p class="section-text">
+      Je m'appelle Julien et je vis dans la région Centre.
+Je fais de la photo depuis plusieurs années, par passion.
+Je propose des séances photo à but non lucratif, pour les particuliers ou les professionnels.
+C’est avant tout pour partager ma passion et créer de belles images ensemble.
+    </p>
+  </section>
+
+  <!-- GALERIE -->
+  <section id="galerie">
+    <div class="section-title">Galerie</div>
+    <h2 class="section-heading">Quelques images</h2>
+    <p class="section-text">
+    </p>
+    <div class="gallery-grid">
+      <!-- Remplace les src par tes fichiers -->
+      <div class="gallery-item">
+        <img src="images/1.jpg" alt="Photo 1">
+      </div>
+      <div class="gallery-item">
+        <img src="images/2.jpg" alt="Photo 2">
+      </div>
+      <div class="gallery-item">
+        <img src="images/photo3.jpg" alt="Photo 3">
+      </div>
+      <div class="gallery-item">
+        <img src="images/photo4.jpg" alt="Photo 4">
+      </div>
+      <div class="gallery-item">
+        <img src="images/photo5.jpg" alt="Photo 5">
+      </div>
+      <div class="gallery-item">
+        <img src="images/photo6.jpg" alt="Photo 6">
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-close" id="lightbox-close">&times;</div>
+    <img src="" alt="Agrandissement" id="lightbox-img">
+  </div>
+
+  <footer>
+    © <span id="year"></span> Julien — Photographe.
+  </footer>
+
+  <script>
+    // Scroll doux
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const y = target.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target === lightboxClose) {
+        lightbox.style.display = 'none';
+        lightboxImg.src = '';
+      }
+    });
+
+    // Année
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
